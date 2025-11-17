@@ -4,8 +4,8 @@ import joblib
 import hashlib
 import os
 
-MODELO_PATH = "gs_cyber_20251115-1756.pkl" 
-HASH_MODELO_CONHECIDO = "815f75b67b73302e91f57c88853c86a1688a33ff15ddcfc7fcaa93034bd57707" 
+MODELO_PATH = "gs_cyber_modelo.pkl" 
+HASH_MODELO_CONHECIDO = "f91ea16a8777c486114618b1a1163b9546d1a31e9b17b494642c4ba941f0bcce" 
 
 
 def gerar_hash_sha256(filepath):

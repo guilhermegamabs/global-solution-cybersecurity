@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simulação Ética de Engenharia Social</title>
+    <style>
+      :root {
+        --accent: #2563eb;
+        --danger: #dc2626;
+        --bg: #eef2f7;
+        --card: #ffffff;
+        --muted: #6b7280;
+        --radius: 14px;
+      }
+
+      body {
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto;
+        background: var(--bg);
+        color: #111;
+        margin: 0;
+      }
+
+      header {
+        background: linear-gradient(90deg, #0ea5a5, #2563eb);
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 32px;
+        margin: 0 0 10px;
+        font-weight: 700;
+      }
+
+      header .lead {
+        font-size: 15px;
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1250px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+
+      .banner {
+        background: var(--card);
+        border-left: 6px solid var(--danger);
+        padding: 18px;
+        border-radius: var(--radius);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      main {
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 25px;
+      }
+
+      .card {
+        background: var(--card);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+      }
+
+      h2,
+      h3,
+      h4 {
+        margin-top: 0;
+        font-weight: 600;
+      }
+
+      .email-sim {
+        background: #fffbea;
+        border-left: 5px solid #f59e0b;
+        padding: 16px;
+        border-radius: var(--radius);
+        margin-bottom: 20px;
+      }
+
+      .fake-login {
+        max-width: 420px;
+        margin: 15px 0;
+      }
+
+      label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        display: block;
+        font-weight: 500;
+        color: #374151;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: var(--radius);
+        margin-bottom: 10px;
+        font-size: 14px;
+        background: #f9fafb;
+      }
+
+      button {
+        background: var(--accent);
+        color: #fff;
+        padding: 12px 14px;
+        border-radius: var(--radius);
+        border: 0;
+        cursor: pointer;
+        font-weight: 600;
+        width: 100%;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: #1e3a8a;
+      }
+
+      ul,
+      ol {
+        padding-left: 22px;
+        line-height: 1.6;
+      }
+
+      .indicator,
+      .ok {
+        padding: 12px;
+        border-radius: var(--radius);
+        margin-top: 12px;
+      }
+
+      .indicator {
+        background: #fff3cd;
+        border: 1px solid #ffe8a3;
+      }
+      .ok {
+        background: #ecfdf5;
+        border: 1px solid #bbf7d0;
+      }
+
+      footer {
+        margin-top: 30px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+        padding-bottom: 40px;
+      }
+
+      .watermark {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        backdrop-filter: blur(6px);
+      }
+
+      /* Modal */
+      .modal-bg {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(4px);
+        padding: 20px;
+      }
+
+      .modal {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: var(--radius);
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.25s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Simulação Ética de Engenharia Social</h1>
+        <p class="lead">
+          Exemplo educativo: campanha de phishing simulada para treinar
+          identificação e contramedidas. <b>Não insira credenciais reais.</b>
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="banner card">
+        <div style="flex: 1">
+          <strong>AVISO:</strong> Este conteúdo é uma simulação para fins de
+          treinamento. Não é um ataque real. Qualquer formulário aqui é
+          inofensivo e bloqueado.
+        </div>
+        <div style="text-align: right; color: var(--muted)">
+          Criado para: Global Solution | Cyber Security 
+        </div>
+      </div>
+
+      <main>
+        <section class="card">
+          <h2>Exemplo de mensagem de phishing (simulada)</h2>
+          <div class="email-sim">
+            <p>
+              <strong>Remetente:</strong> suporte@plataforma-exemplo.com
+              &lt;suporte@plataforma-exemplo.com&gt;
+            </p>
+            <p>
+              <strong>Assunto:</strong> Ação necessária: verifique sua conta
+              agora
+            </p>
+            <p class="muted">
+              "Olá, detectamos uma atividade incomum em sua conta. Clique no
+              link abaixo para verificar e evitar bloqueio."
+            </p>
+            <p class="muted">
+              Link:
+              <a
+                href="#"
+                onclick="alert('Link simulado');return false"
+                >https://plataforma-exemplo.com/verify?id=12345</a
+              >
+            </p>
+          </div>
+
+          <h3>Simulação de página de login (NAO COLE SENHA)</h3>
+          <p class="muted">
+            Esta página de login é apenas demonstrativa — o envio é interceptado
+            e não envia dados a nenhum servidor.
+          </p>
+
+          <div class="fake-login">
+            <form id="loginForm" onsubmit="return handleSubmit(event)">
+              <label for="user">E-mail ou usuário</label>
+              <input
+                id="user"
+                name="user"
+                type="text"
+                placeholder="seu.nome@exemplo.com"
+                autocomplete="off"
+              />
+              <label for="pass">Senha</label>
+              <input
+                id="pass"
+                name="pass"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="new-password"
+              />
+              <button type="submit">Entrar e verificar</button>
+            </form>
+          </div>
+
+          <div style="margin-top: 12px">
+            <strong>Ao submeter:</strong>
+            <ul>
+              <li class="muted">
+                O script bloqueia o envio real e mostra feedback educativo
+                imediatamente.
+              </li>
+              <li class="muted">
+                Objetivo: ensinar indicadores de phishing e passos de resposta.
+              </li>
+            </ul>
+          </div>
+
+          <hr style="margin: 14px 0" />
+
+          <h3>Contramedidas e boas práticas (resumo prático)</h3>
+          <ul>
+            <li>
+              <b>Verificar remetente:</b> confira o domínio real (ex.:
+              "plataforma-exemplo.com" ≠ "plataforma-exempl0.com").
+            </li>
+            <li>
+              <b>Não clicar imediatamente:</b> passe o mouse sobre links para
+              ver destino, e prefira digitar o endereço manualmente.
+            </li>
+            <li>
+              <b>Desconfie de urgência:</b> táticas de pressão ("ultimas 24h")
+              são sinal de engenharia social.
+            </li>
+            <li>
+              <b>Autenticação forte:</b> habilite MFA/2FA e use gerenciadores de
+              senha.
+            </li>
+            <li>
+              <b>Canal oficial:</b> em caso de dúvida, contate suporte por
+              canais oficiais (site ou telefone cadastrado).
+            </li>
+            <li>
+              <b>Educação contínua:</b> simulações periódicas e relatórios
+              fáceis aumentam a resistência da equipe.
+            </li>
+          </ul>
+
+          <h4>Checklist rápido de identificação</h4>
+          <div class="indicator">
+            Assinatura e saudação genéricas; erros de português; domínio
+            suspeito; link encurtado; anexos inesperados.
+          </div>
+        </section>
+
+        <aside class="card">
+          <h3>Passo a passo de resposta (o que o usuário deve fazer)</h3>
+          <ol>
+            <li>Não insira credenciais ou clique em anexos.</li>
+            <li>Marque a mensagem como phishing/spam no cliente de e-mail.</li>
+            <li>
+              Reporte ao time de segurança (incluir remetente e cabeçalho da
+              mensagem).
+            </li>
+            <li>Altere senha se informou dados e ative 2FA.</li>
+          </ol>
+
+          <h3>Dicas técnicas (para administradores)</h3>
+          <ul>
+            <li class="muted">
+              Implementar DMARC/DKIM/SPF e monitorar falhas.
+            </li>
+            <li class="muted">
+              Bloquear domínios typosquatting e usar filtros de link dinâmico.
+            </li>
+            <li class="muted">
+              Reforçar políticas de MFA e limitar privilégios por necessidade.
+            </li>
+          </ul>
+
+          <h3>Recursos do treinamento</h3>
+          <p class="muted">
+            Use esta página localmente em laboratórios e inclua questionários
+            após a simulação para medir aprendizado.
+          </p>
+
+          <div style="margin-top: 10px">
+            <button onclick="showModal()">Ver demonstração dos sinais</button>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="container muted">
+        Conteúdo de exemplo — não colete dados reais. Salve este ficheiro como
+        <code>index.html</code> e abra no navegador para usar localmente.
+      </footer>
+    </div>
+
+    <div class="watermark">SIMULAÇÃO EDUCATIVA</div>
+
+    <!-- Modal educativo -->
+    <div id="modalBg" class="modal-bg">
+      <div class="modal">
+        <h3>Sinais rápidos de phishing — exemplo</h3>
+        <p>
+          1) Dominío do remetente irregular; 2) Solicitação urgente de
+          credenciais; 3) Link curto com redirecionamento; 4) Erros de português
+          e logotipos desconfigurados.
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-top: 12px;
+          "
+        >
+          <button onclick="closeModal()">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // segurança: bloqueia envios reais e mostra feedback educativo
+      function handleSubmit(e) {
+        e.preventDefault();
+        // Nunca envie dados para servidores neste ficheiro de treinamento
+        const user = document.getElementById("user").value || "(não informado)";
+        // Limpar campo de senha imediatamente
+        document.getElementById("pass").value = "";
+
+        // Exibir modal educativo com recomendações
+        const modalBg = document.getElementById("modalBg");
+        modalBg.style.display = "flex";
+
+        // Log de treinamento local (somente na sessão do navegador). Não persiste.
+        console.info("[Simulação] tentativa de login simulada:", {
+          user: user,
+          time: new Date().toISOString(),
+        });
+
+        return false;
+      }
+
+      function showModal() {
+        document.getElementById("modalBg").style.display = "flex";
+      }
+      function closeModal() {
+        document.getElementById("modalBg").style.display = "none";
+      }
+
+      // Previne que o usuário arraste e solte arquivos que possam ser sensíveis
+      window.addEventListener("drop", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+      window.addEventListener("dragover", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+
+      // Mensagem clara na console para instrutores
+      console.log(
+        "Página de simulação carregada — ambiente seguro para treinamento. Não capture senhas reais aqui."
+      );
+    </script>
+  </body>
+</html>
